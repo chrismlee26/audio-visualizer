@@ -1,10 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <title>Audio Visualizer</title>
+    <title>Chris' Audio Visualizer</title>
     <style>
       body, html {
         height: 100%;
+        background-color: #333;
       }
 
       body {
@@ -15,7 +16,14 @@
       }
 
       #canvas {
-        border: 1px solid;
+        border: 3px solid white;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
       }
 
       button {
@@ -28,11 +36,11 @@
   </head>
   <body>
 
-    <canvas id="canvas" width="300" height="300"></canvas>
-    
-    <button id="button-play">Play</button>
-    <button id="button-pause">Stop</button>
-
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <div className="buttons">
+      <button id="button-play">Play</button>
+      <button id="button-pause">Stop</button>
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>
