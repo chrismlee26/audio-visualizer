@@ -6,6 +6,7 @@
       body, html {
         height: 100%;
         background-color: #333;
+        color: white;
       }
 
       body {
@@ -29,18 +30,23 @@
       button {
         margin: 5px;
         padding: 1em;
+        width: 396px;
         border-radius: 0.25em;
-        border: 1px solid;
+        border: 3px solid;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
       }
+
     </style>
   </head>
   <body>
-
+    <h1>Chris' Audio Visualizer</h1>
     <canvas id="canvas" width="800" height="800"></canvas>
     <div className="buttons">
       <button id="button-play">Play</button>
-      <button id="button-pause">Stop</button>
-    </div>
+      <button id="button-pause">Pause</button>
+    </div> 
     <script src="main.js" type="module"></script>
   </body>
 </html>

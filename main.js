@@ -11,6 +11,7 @@ import circleCenterRenderer from './renderCircleCenter.js'
 import verticalBarsRenderer from './verticalBarRenderer.js'
 import verticalBarsMonoRenderer from './verticalBarsMonoRenderer.js'
 import radialRayRenderer from './radialRayRenderer.js'
+import chrisRenderer from './chrisRenderer.js'
 
 
 // --------------------------------------------------------
@@ -39,7 +40,7 @@ pauseButton.addEventListener('click', (e) => {
 // --------------------------------------------------------
 // Audio setup
 
-// Defime some variables 
+// Define some variables 
 let analyser
 let frequencyArray
 let audio
@@ -52,9 +53,7 @@ function startAudio() {
 	const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 	
 	// Define a source sound file 
-	// You can replace this with your own file
 	audio.src = 'bird-whistling-a.wav'
-	// audio.src = 'log-sine-sweep.wav'
 
 	// Make a new analyser
 	analyser = audioContext.createAnalyser()
@@ -64,30 +63,33 @@ function startAudio() {
 	analyser.connect(audioContext.destination)
 
 	// Get an array of audio data from the analyser
+	// dataArray
 	frequencyArray = new Uint8Array(analyser.frequencyBinCount)
 	// console.log(frequencyArray.length)
 	
 	// Start playing the audio
 	audio.play()
 
+	// render = animate
 	requestAnimationFrame(render)
 }
 
+
 // This function renders the audio to the canvas using a renderer
 function render() {
-
-	const centerX = 300 / 2
-	const centerY = 300 / 2
-	const radius = 300 / 5
+	// Get the audio data
 	analyser.getByteFrequencyData(frequencyArray)
-	
-	// Use one of the renderers below 
+
+	// Chris' Renderer
+	chrisRenderer(frequencyArray, ctx, 1000, 1000)
+
+	// Example Renderers 
 	// radialRayRenderer(frequencyArray, ctx, centerX, centerY, radius)
 	// verticalBarsMonoRenderer(frequencyArray, ctx, 12, 300, 300)
 	// verticalBarsRenderer(frequencyArray, ctx, 300, 300)
 	// circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
 	// circleGridRenderer(frequencyArray, ctx, 300, 300)
-	circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
+	// circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
 
 	// Set up the next animation frame
 	requestAnimationFrame(render)
